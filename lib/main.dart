@@ -39,10 +39,16 @@ class _HomePageState extends State<HomePage> {
 
   void add() {
     if (newTaskTitleController.text.isEmpty) return;
-    
+
     setState(() {
       widget.items.add(Item(title: newTaskTitleController.text, done: false));
       newTaskTitleController.clear();
+    });
+  }
+
+  void remove(int index) {
+    setState(() {
+      widget.items.removeAt(index);
     });
   }
 
@@ -69,14 +75,25 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (context, index) {
           final item = widget.items[index];
 
-          return CheckboxListTile(
-            title: Text(item.title),
+          return Dismissible(
             key: Key(item.title),
-            value: item.done,
-            onChanged: (value) {
-              setState(() {
-                item.done = value;
-              });
+            child: CheckboxListTile(
+              title: Text(item.title),
+              value: item.done,
+              onChanged: (value) {
+                setState(() {
+                  item.done = value;
+                });
+              },
+            ),
+            background: Container(
+              color: Colors.red.withOpacity(0.4),
+              child: Icon(Icons.delete),
+            ),
+            onDismissed: (direction) {
+              if (direction == DismissDirection.endToStart) {
+                remove(index);
+              }
             },
           );
         },
