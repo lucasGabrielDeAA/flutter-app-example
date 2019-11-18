@@ -1,4 +1,4 @@
-# flutter-example-app
+# flutter-app-example
 
 ## Getting Started
 
