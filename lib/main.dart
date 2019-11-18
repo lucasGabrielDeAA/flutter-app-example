@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       title: 'Todo App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.deepPurple,
       ),
       home: HomePage(),
     );
@@ -30,23 +30,61 @@ class HomePage extends StatefulWidget {
     items.add(Item(title: "Item 4", done: true));
   }
 
-  
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  var newTaskTitleController = TextEditingController();
+
+  void add() {
+    if (newTaskTitleController.text.isEmpty) return;
+    
+    setState(() {
+      widget.items.add(Item(title: newTaskTitleController.text, done: false));
+      newTaskTitleController.clear();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Todo List"),
+        title: TextFormField(
+          controller: newTaskTitleController,
+          keyboardType: TextInputType.text,
+          style: TextStyle(
+            color: Colors.white,
+          ),
+          decoration: InputDecoration(
+            labelText: "New task's title",
+            labelStyle: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
       ),
       body: ListView.builder(
         itemCount: widget.items.length,
         itemBuilder: (context, index) {
-          return Text(widget.items[index].title);
+          final item = widget.items[index];
+
+          return CheckboxListTile(
+            title: Text(item.title),
+            key: Key(item.title),
+            value: item.done,
+            onChanged: (value) {
+              setState(() {
+                item.done = value;
+              });
+            },
+          );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: add,
+        child: Icon(Icons.add),
+        backgroundColor: Colors.green,
       ),
     );
   }
