@@ -1,14 +1,12 @@
 # flutter-app-example
 
+App developed from [Curso básico de Flutter](https://www.youtube.com/playlist?list=PLHlHvK2lnJndhgbqLl5DNEvKQg5F4ZenQ)
+
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This app was built using **flutter**'s SDK.
 
-A few resources to get you started if this is your first Flutter project:
+To learn how to do this take a look in this nice links:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [online documentation](https://flutter.dev/docs)
+- [Installing Flutter's SDK](https://flutter.dev/docs/get-started/install)
